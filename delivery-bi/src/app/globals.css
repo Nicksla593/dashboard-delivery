@@ -1,0 +1,71 @@
+/* Inter carregada por CSS, não por next/font: o build não depende de rede e,
+   se a fonte não carregar, a pilha de fallback mantém o layout intacto. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI Variable Text", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body {
+  background-color: theme("colors.canvas");
+  color: theme("colors.ink.DEFAULT");
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Números em colunas e KPIs alinham verticalmente. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@layer components {
+  .panel {
+    @apply rounded-lg border border-line bg-panel shadow-card;
+  }
+  .panel-header {
+    @apply flex items-center justify-between border-b border-line px-5 py-3.5;
+  }
+  .panel-title {
+    @apply text-sm font-semibold text-ink;
+  }
+  .field {
+    @apply w-full rounded-md border border-line bg-white px-3 py-2 text-sm text-ink outline-none transition
+           placeholder:text-ink-faint focus:border-brand focus:ring-2 focus:ring-brand/15;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3.5 py-2 text-sm font-medium transition
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-white text-ink-soft hover:bg-canvas;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-white px-2.5 py-1 text-xs font-medium text-ink-soft;
+  }
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-wider text-ink-faint;
+  }
+  .th {
+    @apply whitespace-nowrap px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider text-ink-faint;
+  }
+  .td {
+    @apply whitespace-nowrap border-t border-line px-4 py-2.5 text-sm text-ink-soft;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
